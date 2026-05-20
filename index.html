@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f2ff" />
+    <meta name="description" content="Página administrativa para el minuto a minuto y propuesta de actividades de Salvémoslos del Reggaetón 2026 · Especial Michael Jackson." />
+    <title>Salvémoslos del Reggaetón 2026 · Minuto a minuto</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="app" class="app">
+      <header class="hero" id="inicio">
+        <nav class="topbar" aria-label="Navegación principal">
+          <a class="brand" href="#inicio" aria-label="Volver al inicio">
+            <span class="brand-mark">MJ</span>
+            <span>Musicala · Full 80s</span>
+          </a>
+          <div class="top-actions">
+            <button class="ghost-btn" id="copySummaryBtn" type="button">Copiar resumen</button>
+            <button class="ghost-btn" id="printBtn" type="button">Imprimir / PDF</button>
+            <button class="ghost-btn" id="exportBtn" type="button">Exportar estado</button>
+          </div>
+        </nav>
+
+        <section class="hero-card">
+          <div class="logo-strip" aria-label="Logos del evento y aliados">
+            <img src="assets/logo.png" alt="Logo Musicala" />
+            <img src="assets/logo_f80.png" alt="Logo Full 80s" />
+            <img src="assets/LOGO_SDR.png" alt="Logo Salvémoslos del Reggaetón" />
+          </div>
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <p class="eyebrow" id="eventTag"></p>
+              <h1 id="eventTitle"></h1>
+              <p id="eventSubtitle"></p>
+              <div class="hero-meta" id="eventMeta"></div>
+            </div>
+            <aside class="command-card" aria-labelledby="focusTitle">
+              <p class="mini-label">Enfoque operativo</p>
+              <h2 id="focusTitle"></h2>
+              <p id="focusText"></p>
+              <div class="progress-wrap" aria-label="Avance de bloques">
+                <div class="progress-line"><span id="progressBar"></span></div>
+                <p id="progressText"></p>
+              </div>
+            </aside>
+          </div>
+        </section>
+      </header>
+
+      <nav class="section-nav" aria-label="Secciones del documento">
+        <a href="#programacion">Minuto a minuto</a>
+        <a href="#actividades">Actividades</a>
+        <a href="#setlists">Setlists</a>
+        <a href="#logistica">Logística</a>
+      </nav>
+
+      <section class="quick-panel" aria-label="Resumen ejecutivo del evento">
+        <article>
+          <span>Inicio general</span>
+          <strong id="startTime"></strong>
+        </article>
+        <article>
+          <span>Presentaciones Musicala</span>
+          <strong>Desde 2:00 p. m.</strong>
+        </article>
+        <article>
+          <span>Temática</span>
+          <strong>Michael Jackson</strong>
+        </article>
+        <article>
+          <span>Formato</span>
+          <strong>Restaurante bar</strong>
+        </article>
+      </section>
+
+      <section class="toolbar" aria-label="Filtros de programación">
+        <div class="field">
+          <label for="searchInput">Buscar</label>
+          <input id="searchInput" type="search" placeholder="Buscar por bloque, responsable, tarea o canción" />
+        </div>
+        <div class="field">
+          <label for="typeFilter">Tipo</label>
+          <select id="typeFilter">
+            <option value="all">Todo</option>
+            <option value="logistica">Logística</option>
+            <option value="show">Presentación</option>
+            <option value="actividad">Actividad</option>
+            <option value="pausa">Pausa / transición</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="statusFilter">Estado</label>
+          <select id="statusFilter">
+            <option value="all">Todos</option>
+            <option value="pending">Pendiente</option>
+            <option value="active">En curso</option>
+            <option value="done">Hecho</option>
+            <option value="issue">Alerta</option>
+          </select>
+        </div>
+        <button class="primary-btn" id="resetBtn" type="button">Reiniciar seguimiento</button>
+      </section>
+
+      <section class="layout-grid" id="programacion">
+        <section class="timeline-section" aria-labelledby="timelineTitle">
+          <div class="section-heading">
+            <div>
+              <p class="mini-label">Operación en vivo</p>
+              <h2 id="timelineTitle">Minuto a minuto</h2>
+            </div>
+            <p class="section-note">Los horarios son una base operativa y pueden ajustarse según sonido, llegada de artistas y dinámica del público.</p>
+          </div>
+          <div id="timeline" class="timeline"></div>
+        </section>
+
+        <aside class="side-stack">
+          <section class="card" id="setlists" aria-labelledby="setlistTitle">
+            <p class="mini-label">Artistas Musicala</p>
+            <h2 id="setlistTitle">Setlists</h2>
+            <div id="setlistsContainer" class="setlists"></div>
+          </section>
+
+          <section class="card" aria-labelledby="commTitle">
+            <p class="mini-label">Comunicación sugerida</p>
+            <h2 id="commTitle">Mensaje de presentación</h2>
+            <p id="introMessage" class="quote-box"></p>
+          </section>
+        </aside>
+      </section>
+
+      <section class="wide-section" id="actividades" aria-labelledby="activitiesTitle">
+        <div class="section-heading split">
+          <div>
+            <p class="mini-label">Propuesta Musicala</p>
+            <h2 id="activitiesTitle">Actividades interactivas para el público</h2>
+          </div>
+          <p class="section-note">
+            Actividades breves, de baja complejidad operativa y pensadas para un restaurante bar largo y poco ancho.
+          </p>
+        </div>
+
+        <div id="proposalIntro" class="proposal-intro"></div>
+        <div id="activitiesContainer" class="activities-grid"></div>
+
+        <div class="two-column">
+          <section class="card clean-card" aria-labelledby="placementTitle">
+            <p class="mini-label">Ubicación sugerida</p>
+            <h2 id="placementTitle">Dentro de la programación</h2>
+            <div id="placementContainer" class="placement-list"></div>
+          </section>
+
+          <section class="card clean-card" aria-labelledby="objectiveTitle">
+            <p class="mini-label">Objetivo general</p>
+            <h2 id="objectiveTitle">Propósito de las dinámicas</h2>
+            <p id="generalObjective"></p>
+          </section>
+        </div>
+
+        <section class="card clean-card" aria-labelledby="summaryTableTitle">
+          <p class="mini-label">Resumen ejecutivo</p>
+          <h2 id="summaryTableTitle">Comparativo de actividades</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Actividad</th>
+                  <th>Duración</th>
+                  <th>Participación</th>
+                  <th>Dificultad</th>
+                  <th>Elementos</th>
+                </tr>
+              </thead>
+              <tbody id="activityTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card clean-card" aria-labelledby="moreIdeasTitle">
+          <p class="mini-label">Ideas complementarias</p>
+          <h2 id="moreIdeasTitle">Opciones rápidas para considerar</h2>
+          <div id="extraIdeas" class="extra-ideas"></div>
+        </section>
+      </section>
+
+      <section class="wide-section" id="logistica" aria-labelledby="logisticsTitle">
+        <div class="section-heading split">
+          <div>
+            <p class="mini-label">Coordinación</p>
+            <h2 id="logisticsTitle">Logística y roles</h2>
+          </div>
+          <p class="section-note">Información útil para Musicala y Full 80s antes y durante el desarrollo del evento.</p>
+        </div>
+
+        <div class="two-column">
+          <section class="card clean-card" aria-labelledby="rolesTitle">
+            <p class="mini-label">Equipo</p>
+            <h2 id="rolesTitle">Roles sugeridos</h2>
+            <ul id="rolesList" class="clean-list"></ul>
+          </section>
+
+          <section class="card clean-card" aria-labelledby="risksTitle">
+            <p class="mini-label">Puntos críticos</p>
+            <h2 id="risksTitle">Alertas logísticas</h2>
+            <ul id="risksList" class="clean-list warning-list"></ul>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <template id="timelineTemplate">
+      <article class="timeline-card">
+        <div class="time-block">
+          <strong class="item-time"></strong>
+          <span class="item-duration"></span>
+        </div>
+        <div class="item-content">
+          <div class="item-topline">
+            <span class="chip item-type"></span>
+            <span class="owner item-owner"></span>
+          </div>
+          <h3 class="item-title"></h3>
+          <p class="item-detail"></p>
+          <ul class="item-checklist"></ul>
+          <label class="note-label">
+            Nota de seguimiento
+            <textarea class="item-note" rows="2" placeholder="Ej.: sonido listo, artista presente, pendiente ajuste técnico"></textarea>
+          </label>
+        </div>
+        <div class="status-box">
+          <label>
+            Estado
+            <select class="status-select">
+              <option value="pending">Pendiente</option>
+              <option value="active">En curso</option>
+              <option value="done">Hecho</option>
+              <option value="issue">Alerta</option>
+            </select>
+          </label>
+        </div>
+      </article>
+    </template>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
