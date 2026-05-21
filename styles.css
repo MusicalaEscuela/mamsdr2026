@@ -19,9 +19,10 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 16px; }
 body {
   margin: 0;
+  overflow-x: hidden;
   min-height: 100vh;
   color: var(--ink);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -281,7 +282,6 @@ textarea:focus {
 .timeline-card,
 .proposal-intro,
 .activity-card,
-.section-nav,
 .empty-state {
   background: var(--card);
   border: 1px solid var(--line);
@@ -317,7 +317,6 @@ textarea:focus {
 }
 .progress-wrap p { margin: 9px 0 0; font-size: .92rem; }
 
-.section-nav,
 .quick-panel,
 .toolbar,
 .layout-grid,
@@ -326,27 +325,6 @@ textarea:focus {
   margin-inline: auto;
 }
 
-.section-nav {
-  position: sticky;
-  top: 10px;
-  z-index: 7;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 14px;
-  padding: 10px;
-  border-radius: 999px;
-}
-
-.section-nav a {
-  display: inline-flex;
-  padding: 10px 14px;
-  border-radius: 999px;
-  text-decoration: none;
-  color: var(--ink);
-  font-weight: 850;
-  background: rgba(255,255,255,.58);
-}
 
 .quick-panel {
   display: grid;
@@ -711,17 +689,226 @@ td { color: #382f43; line-height: 1.45; }
   .timeline-card { grid-template-columns: 1fr; }
   .status-box select { min-width: 100%; }
   .pin-row { flex-direction: column; }
-  .section-nav { border-radius: 24px; }
-  .section-nav a { width: 100%; justify-content: center; }
   .activity-info-grid { grid-template-columns: 1fr; }
   .logo-strip img { height: 50px; }
+}
+
+
+@media (hover: hover) {
+  .ghost-btn:hover,
+  .primary-btn:hover {
+    transform: translateY(-1px);
+  }
+}
+
+@media (max-width: 760px) {
+  html { scroll-padding-top: 12px; }
+  body {
+    background:
+      radial-gradient(circle at top left, rgba(221, 214, 254, 0.76), transparent 22rem),
+      radial-gradient(circle at 100% 0%, rgba(253, 186, 116, 0.22), transparent 18rem),
+      linear-gradient(135deg, var(--bg), var(--bg-soft));
+  }
+
+  .app { padding-bottom: 42px; }
+  .hero {
+    padding: 12px 12px 18px;
+    overflow: visible;
+  }
+  .hero::before { display: none; }
+  .topbar {
+    padding: 4px 0 14px;
+    gap: 12px;
+  }
+  .brand {
+    width: 100%;
+    line-height: 1.2;
+  }
+  .brand-mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 14px;
+    flex: 0 0 auto;
+  }
+  .top-actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .ghost-btn,
+  .primary-btn {
+    width: 100%;
+    min-height: 44px;
+    padding: 11px 12px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-card {
+    padding: 18px;
+    border-radius: 24px;
+    backdrop-filter: none;
+  }
+  .logo-strip {
+    justify-content: flex-start;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .logo-strip img {
+    height: 44px;
+    padding: 7px 9px;
+    border-radius: 14px;
+  }
+  .hero h1 {
+    font-size: clamp(2.05rem, 12vw, 3.55rem);
+    line-height: .98;
+    letter-spacing: -0.052em;
+  }
+  .hero-copy p:not(.eyebrow) { font-size: 1rem; }
+  .hero-meta {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .hero-meta span {
+    border-radius: 16px;
+    padding: 10px 12px;
+    flex-wrap: wrap;
+  }
+  .command-card {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .quick-panel,
+  .toolbar,
+  .layout-grid,
+  .wide-section {
+    width: min(100% - 24px, 680px);
+  }
+  .quick-panel {
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .quick-panel article {
+    padding: 14px;
+    border-radius: 18px;
+  }
+  .quick-panel strong { font-size: 1.02rem; }
+
+  .toolbar {
+    position: static;
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 22px;
+    box-shadow: 0 16px 40px rgba(88, 28, 135, .11);
+  }
+  .toolbar input,
+  .toolbar select,
+  .status-box select,
+  textarea {
+    font-size: 16px;
+  }
+
+  .layout-grid { margin-top: 18px; }
+  .section-heading {
+    display: block;
+    margin-bottom: 12px;
+  }
+  .section-note {
+    max-width: none;
+    margin-top: 8px;
+  }
+
+  .timeline { gap: 12px; }
+  .timeline-card {
+    padding: 15px;
+    gap: 12px;
+    border-radius: 20px;
+    box-shadow: 0 14px 34px rgba(88, 28, 135, .11);
+  }
+  .timeline-card:hover { transform: none; }
+  .time-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .time-block span { margin-top: 0; }
+  .item-content h3 {
+    font-size: 1.12rem;
+    line-height: 1.18;
+  }
+  .status-box,
+  .status-box label { width: 100%; }
+  .status-box { display: block; }
+  .note-label textarea { min-height: 84px; }
+
+  .card,
+  .proposal-intro,
+  .activity-card,
+  .empty-state {
+    padding: 18px;
+    border-radius: 22px;
+    box-shadow: 0 14px 34px rgba(88, 28, 135, .11);
+  }
+  .side-stack { gap: 14px; }
+  .wide-section { margin-top: 34px; }
+  .section-heading h2,
+  .card h2,
+  .proposal-intro h3 {
+    font-size: clamp(1.55rem, 8vw, 2.15rem);
+    line-height: 1.04;
+  }
+  .activity-card h3 {
+    padding-right: 42px;
+    font-size: clamp(1.55rem, 8vw, 2.2rem);
+  }
+  .activity-number {
+    right: 14px;
+    top: 18px;
+    font-size: 3rem;
+  }
+  .activity-info-grid { gap: 8px; }
+  .table-wrap {
+    margin-inline: -6px;
+    padding: 0 6px 4px;
+  }
+  table {
+    min-width: 640px;
+    font-size: .92rem;
+  }
+  th, td { padding: 12px 10px; }
+
+  .toast {
+    width: calc(100% - 24px);
+    bottom: 14px;
+    border-radius: 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-actions { grid-template-columns: 1fr; }
+  .brand span:last-child { font-size: .95rem; }
+  .logo-strip img { height: 40px; }
+  .hero-card { padding: 16px; }
+  .hero h1 { font-size: clamp(1.9rem, 13vw, 3.1rem); }
+  .hero-meta span { font-size: .9rem; }
+  .quick-panel span { font-size: .8rem; }
+  .timeline-card { padding: 14px; }
+  .time-block strong { font-size: 1.2rem; }
+  .time-block span { font-size: .78rem; }
+  .activity-number { display: none; }
+  .activity-card h3 { padding-right: 0; }
 }
 
 @media print {
   body { background: white; color: black; }
   .admin-lock,
   .topbar,
-  .section-nav,
   .toolbar,
   .status-box,
   .note-label,

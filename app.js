@@ -17,7 +17,6 @@ const els = {
   resetBtn: document.querySelector("#resetBtn"),
   copySummaryBtn: document.querySelector("#copySummaryBtn"),
   printBtn: document.querySelector("#printBtn"),
-  exportBtn: document.querySelector("#exportBtn"),
   timeline: document.querySelector("#timeline"),
   timelineTemplate: document.querySelector("#timelineTemplate"),
   setlists: document.querySelector("#setlistsContainer"),
@@ -306,15 +305,6 @@ function bindEvents() {
 
   els.printBtn.addEventListener("click", () => window.print());
 
-  els.exportBtn.addEventListener("click", () => {
-    const blob = new Blob([JSON.stringify({ event: DATA.eventTitle, exportedAt: new Date().toISOString(), state }, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "estado-salvemoslos-reggaeton-2026.json";
-    a.click();
-    URL.revokeObjectURL(url);
-  });
 
   els.resetBtn.addEventListener("click", () => {
     const ok = confirm("¿Reiniciar estados, notas y checklist del minuto a minuto?");

@@ -16,7 +16,7 @@ Página web estática para uso administrativo de Musicala y Full 80s.
 - Roles sugeridos y alertas logísticas.
 - Seguimiento local por bloque: estado, notas y checklist.
 - Bloque pendiente para confirmar la banda tributo Michael Jackson por parte de Full 80s.
-- Botones para imprimir/PDF, copiar resumen y exportar estado.
+- Botones para imprimir/PDF y copiar resumen.
 
 ## Acceso
 
